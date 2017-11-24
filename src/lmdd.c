@@ -53,7 +53,7 @@
 void		flush(void);
 #endif
 
-#define	USE_VALLOC
+#define	USE_MALLOC
 #ifdef	USE_VALLOC
 #define	VALLOC	valloc
 #else

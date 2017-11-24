@@ -131,9 +131,9 @@ initialize(iter_t iterations, void *cookie)
 	if (iterations)
 		return;
 
-	state->buf = valloc(state->msize);
+	state->buf = malloc(state->msize);
 	if (!state->buf) {
-		perror("valloc");
+		perror("malloc");
 		exit(1);
 	}
 	touch(state->buf, state->msize);
@@ -238,9 +238,9 @@ source(int data)
 		exit(0);
 	}
 
-	buf = valloc(m);
+	buf = malloc(m);
 	if (!buf) {
-		perror("valloc");
+		perror("malloc");
 		exit(1);
 	}
 	memset(buf, 0, m);

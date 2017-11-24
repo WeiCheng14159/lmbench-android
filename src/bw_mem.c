@@ -153,7 +153,7 @@ init_loop(iter_t iterations, void *cookie)
 
 	handle_scheduler(benchmp_childid(), 0, 0);
 
-        state->buf = (TYPE *)valloc(state->nbytes);
+        state->buf = (TYPE *)malloc(state->nbytes);
 	state->buf2_orig = NULL;
 	state->lastone = (TYPE*)state->buf - 1;
 	state->lastone = (TYPE*)((char *)state->buf + state->nbytes - 512);
@@ -166,7 +166,7 @@ init_loop(iter_t iterations, void *cookie)
 	memset((void*)state->buf, 0, state->nbytes);
 
 	if (state->need_buf2 == 1) {
-		state->buf2_orig = state->buf2 = (TYPE *)valloc(state->nbytes + 2048);
+		state->buf2_orig = state->buf2 = (TYPE *)malloc(state->nbytes + 2048);
 		if (!state->buf2) {
 			perror("malloc");
 			exit(1);

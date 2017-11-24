@@ -36,7 +36,7 @@ initialize(iter_t iterations, void* cookie)
 
 	if (iterations) return;
 
-	state->buf = valloc(XFERSIZE);
+	state->buf = malloc(XFERSIZE);
 	touch(state->buf, XFERSIZE);
 	state->initerr = 0;
 	if (socketpair(AF_UNIX, SOCK_STREAM, 0, state->pipes) == -1) {

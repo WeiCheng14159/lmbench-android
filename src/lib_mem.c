@@ -473,16 +473,16 @@ tlb_initialize(iter_t iterations, void* cookie)
 
 	/* first, layout the sequence of page accesses */
 	for (i = 0; i < npages; ++i) {
-		p = addr[i] = (char*)valloc(pagesize);
+		p = addr[i] = (char*)malloc(pagesize);
 		if (!p) {
-			perror("tlb_initialize: valloc");
+			perror("tlb_initialize: malloc");
 			exit(4);
 		}
 		if ((unsigned long)p % pagesize) {
 			free(p);
-			p = addr[i] = (char*)valloc(2 * pagesize);
+			p = addr[i] = (char*)malloc(2 * pagesize);
 			if (!p) {
-				perror("tlb_initialize: valloc");
+				perror("tlb_initialize: malloc");
 				exit(5);
 			}
 			p += pagesize - (unsigned long)p % pagesize;
