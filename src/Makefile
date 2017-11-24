@@ -1,6 +1,10 @@
 # I finally know why Larry Wall's Makefile says "Grrrr".
 SHELL = /bin/sh
 
+CROSS_COMPILE=/home/chengwei/Desktop/linux-x86_64/bin/aarch64-linux-android-
+#ARCH=aarch64
+SYS_ROOT=/home/chengwei/Android/Sdk/ndk-bundle/platforms/android-26/arch-arm64
+
 CC = gcc
 LD = gcc
 MAKE = make
@@ -68,13 +72,13 @@ $O/lmbench.a: $(addsuffix .o,$(LIBOBJS))
 	-$(CROSS_COMPILE)$(RANLIB) $O/lmbench.a
 
 lib_%.o: lib_%.c $(INCS)
-	$(CROSS_COMPILE)$(CC) $(CFLAGS) -c $< -o $@
+	$(CROSS_COMPILE)$(CC) $(CFLAGS) -c $< -o $@ --sysroot=$(SYS_ROOT)
 
 %.o: %.c $O/lmbench.a $(INCS)
-	$(CROSS_COMPILE)$(CC) $(CFLAGS) -c $< -o $@
+	$(CROSS_COMPILE)$(CC) $(CFLAGS) -c $< -o $@ --sysroot=$(SYS_ROOT) 
 
 %: %.o
-	$(CROSS_COMPILE)$(LD) $(LDFLAGS) $^ $(LDLIBS) -o $O/$@
+	$(CROSS_COMPILE)$(LD) $(LDFLAGS) $^ $(LDLIBS) -o $O/$@ --sysroot=$(SYS_ROOT)
 
 install:
 	if [ ! -d $(INSTALL_PATH) ]; then mkdir -p $(INSTALL_PATH); fi
