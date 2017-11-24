@@ -16,8 +16,8 @@ INSTALL_PATH = /usr/local
 OS = $(shell ../scripts/os)
 O = ../bin/$(OS)
 CONFIG = ../bin/$(OS)/`../scripts/config`
-CFLAGS = -O2 -DRUSAGE -DHAVE_uint=1 -DHAVE_int64_t=0 -DHAVE_socklen_t -DHAVE_DRAND48 -DHAVE_SCHED_SETAFFINITY=1
-LDFLAGS = -Wl,-s 
+CFLAGS = -O2 -DRUSAGE -DHAVE_uint=1 -DHAVE_int64_t=0 -DHAVE_socklen_t -DHAVE_DRAND48 -DHAVE_SCHED_SETAFFINITY=1 -fPIE -pie
+LDFLAGS = -Wl,-s -fPIE -pie
 LDLIBS = $(O)/lmbench.a -lm
 
 INCS =	bench.h lib_mem.h lib_udp.h stats.h timing.h		\
