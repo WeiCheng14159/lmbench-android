@@ -64,8 +64,8 @@ typedef int64 off64_t;
 #include	"stats.h"
 #include	"timing.h"
 #include	"lib_debug.h"
-#include	"lib_tcp.h"
-#include	"lib_udp.h"
+//#include	"lib_tcp.h"
+//#include	"lib_udp.h"
 #include	"lib_unix.h"
 
 

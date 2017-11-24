@@ -16,31 +16,31 @@ INSTALL_PATH = /usr/local
 OS = $(shell ../scripts/os)
 O = ../bin/$(OS)
 CONFIG = ../bin/$(OS)/`../scripts/config`
-CFLAGS = -O2 -DRUSAGE -DHAVE_uint=1 -DHAVE_int64_t=1 -DHAVE_socklen_t -DHAVE_DRAND48 -DHAVE_SCHED_SETAFFINITY=1
+CFLAGS = -O2 -DRUSAGE -DHAVE_uint=1 -DHAVE_int64_t=0 -DHAVE_socklen_t -DHAVE_DRAND48 -DHAVE_SCHED_SETAFFINITY=1
 LDFLAGS = -Wl,-s 
 LDLIBS = $(O)/lmbench.a -lm
 
-INCS =	bench.h lib_mem.h lib_tcp.h lib_udp.h stats.h timing.h		\
+INCS =	bench.h lib_mem.h lib_udp.h stats.h timing.h		\
 	lib_debug.h lib_unix.h names.h
 
-OBJS =  bw_file_rd.o bw_mem.o bw_mmap_rd.o bw_pipe.o bw_tcp.o bw_udp.o	\
+OBJS =  bw_file_rd.o bw_mem.o bw_mmap_rd.o bw_pipe.o \
 	bw_unix.o							\
 	lat_connect.o lat_ctx.o	lat_fcntl.o lat_fifo.o lat_fs.o 	\
 	lat_mem_rd.o lat_mmap.o lat_ops.o lat_pagefault.o lat_pipe.o 	\
-	lat_proc.o lat_select.o lat_sig.o lat_syscall.o			\
-	lat_tcp.o lat_udp.o lat_unix.o lat_unix_connect.o lat_sem.o	\
+	lat_proc.o lat_sig.o lat_syscall.o			\
+	lat_unix.o lat_unix_connect.o lat_sem.o	\
 	line.o lmdd.o par_mem.o par_ops.o loop_o.o memsize.o		\
 	disk.o enough.o hello.o mhz.o					\
 	msleep.o timing_o.o tlb.o stream.o
 
-LIBOBJS = lib_timing lib_mem lib_tcp lib_udp lib_unix lib_stats		\
+LIBOBJS = lib_timing lib_mem lib_unix lib_stats		\
 	lib_debug lib_sched lib_getopt
 
-EXES =	bw_file_rd bw_mem bw_mmap_rd bw_pipe bw_tcp bw_udp bw_unix	\
-	lat_connect lat_ctx lat_fcntl lat_fifo lat_fs			\
+EXES =	bw_file_rd bw_mem bw_mmap_rd bw_pipe bw_unix	\
+	lat_ctx lat_fcntl lat_fifo lat_fs			\
 	lat_mem_rd lat_mmap lat_ops lat_pagefault lat_pipe		\
-	lat_proc lat_select lat_sig lat_syscall				\
-	lat_tcp lat_udp lat_unix lat_unix_connect lat_sem		\
+	lat_proc lat_sig lat_syscall				\
+	lat_unix lat_unix_connect lat_sem		\
 	line lmdd par_mem par_ops loop_o memsize			\
 	disk enough hello mhz						\
 	msleep timing_o tlb stream
